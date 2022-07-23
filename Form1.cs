@@ -28,12 +28,12 @@ namespace Gear_Optimizer
             cmb_Secondary.TextChanged += UpdateTertiary;
             cmb_Secondary.LostFocus += UpdateTertiary;
 
+            ParseJsonData();
+
             cmb_Character.DataSource = Characters.Keys.ToList();
 
             btn_Go.Click += CalculateOptimalStats;
             dg_Result.DataSource = Result;
-
-            ParseJsonData();
         }
 
         private void Noop(object? sender, EventArgs e) { }
