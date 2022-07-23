@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
 
@@ -11,7 +12,7 @@ namespace Gear_Optimizer
         private Dictionary<string, Gear> Arms = new Dictionary<string, Gear>();
         private Dictionary<string, Gear> Legs = new Dictionary<string, Gear>();
 
-        private List<Solution> Result = new List<Solution>();
+        private BindingList<Solution> Result = new BindingList<Solution>();
 
         private string[] Statnames = new string[] { "None", "Strength", "Speed", "Shooting", "Passing", "Technique" };
 
@@ -27,14 +28,15 @@ namespace Gear_Optimizer
             cmb_Secondary.TextChanged += UpdateTertiary;
             cmb_Secondary.LostFocus += UpdateTertiary;
 
-            ParseJsonData();
-
             cmb_Character.DataSource = Characters.Keys.ToList();
 
             btn_Go.Click += CalculateOptimalStats;
-
             dg_Result.DataSource = Result;
+
+            ParseJsonData();
         }
+
+        private void Noop(object? sender, EventArgs e) { }
 
         private void CalculateOptimalStats (object? sender, EventArgs e)
         {

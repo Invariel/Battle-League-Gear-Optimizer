@@ -198,7 +198,14 @@
             // 
             // dg_Result
             // 
+            this.dg_Result.AllowUserToAddRows = false;
+            this.dg_Result.AllowUserToDeleteRows = false;
+            this.dg_Result.AllowUserToResizeRows = false;
+            this.dg_Result.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dg_Result.CausesValidation = false;
+            this.dg_Result.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken;
             this.dg_Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_Result.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dg_Result.Location = new System.Drawing.Point(12, 87);
             this.dg_Result.Name = "dg_Result";
             this.dg_Result.RowTemplate.Height = 25;
@@ -207,7 +214,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1190, 573);
             this.Controls.Add(this.dg_Result);
@@ -224,6 +231,7 @@
             this.Controls.Add(this.lbl_Secondary);
             this.Controls.Add(this.lbl_Primary);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Battle League Character Optimizer";
