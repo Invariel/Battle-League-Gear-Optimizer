@@ -67,28 +67,6 @@ namespace Gear_Optimizer
             Name = name;
             BaseStats = new Statblock(stats);
         }
-
-        public string ToString (bool csvChecked)
-        {
-            string retval = "";
-
-            if (csvChecked)
-            {
-                retval = $"{Name}\t{Strength}\t{Speed}\t{Shooting}\t{Passing}\t{Technique}\t{Head.Name}\t{Arms.Name}\t{Body.Name}\t{Legs.Name}";
-            }
-            else
-            {
-                retval = this.ToString();
-            }
-
-            return retval;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}: {Strength}, {Speed}, {Shooting}, {Passing}, {Technique}\t\t" +
-                   $"Head: {Head.Name}, Arms: {Arms.Name}, Body: {Body.Name}, Legs: {Legs.Name}";
-        }
     }
 
     public class Gear : Statblock
@@ -98,11 +76,6 @@ namespace Gear_Optimizer
         public Gear(string name, int[] stats) : base(stats)
         {
             Name = name;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}: {Strength}, {Speed}, {Shooting}, {Passing}, {Technique}";
         }
     }
 }
