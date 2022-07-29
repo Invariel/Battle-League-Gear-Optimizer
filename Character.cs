@@ -15,10 +15,13 @@ namespace Gear_Optimizer
         public Gear Arms { get; set; }
         public Gear Legs { get; set; }
 
+        private int STAT_MINIMUM = 1;
+        private int STAT_MAXIMUM = 25;
+
         public int Strength {
             get
             {
-                return BaseStats.Strength + Head.Strength + Body.Strength + Arms.Strength + Legs.Strength;
+                return Clamp (BaseStats.Strength + Head.Strength + Body.Strength + Arms.Strength + Legs.Strength);
             }
         }
 
@@ -26,7 +29,7 @@ namespace Gear_Optimizer
         {
             get
             {
-                return BaseStats.Speed + Head.Speed + Body.Speed + Arms.Speed + Legs.Speed;
+                return Clamp (BaseStats.Speed + Head.Speed + Body.Speed + Arms.Speed + Legs.Speed);
             }
         }
 
@@ -34,7 +37,7 @@ namespace Gear_Optimizer
         {
             get
             {
-                return BaseStats.Shooting + Head.Shooting + Body.Shooting + Arms.Shooting + Legs.Shooting;
+                return Clamp (BaseStats.Shooting + Head.Shooting + Body.Shooting + Arms.Shooting + Legs.Shooting);
             }
         }
 
@@ -42,7 +45,7 @@ namespace Gear_Optimizer
         {
             get
             {
-                return BaseStats.Passing + Head.Passing + Body.Passing + Arms.Passing + Legs.Passing;
+                return Clamp (BaseStats.Passing + Head.Passing + Body.Passing + Arms.Passing + Legs.Passing);
             }
         }
 
@@ -50,36 +53,19 @@ namespace Gear_Optimizer
         {
             get
             {
-                return BaseStats.Technique + Head.Technique + Body.Technique + Arms.Technique + Legs.Technique;
+                return Clamp (BaseStats.Technique + Head.Technique + Body.Technique + Arms.Technique + Legs.Technique);
             }
+        }
+
+        public int Clamp (int stat)
+        {
+            return Math.Max(STAT_MINIMUM, Math.Min(STAT_MAXIMUM, stat));
         }
 
         public Character(string name, int[] stats)
         {
             Name = name;
             BaseStats = new Statblock(stats);
-        }
-
-        public string ToString (bool csvChecked)
-        {
-            string retval = "";
-
-            if (csvChecked)
-            {
-                retval = $"{Name}\t{Strength}\t{Speed}\t{Shooting}\t{Passing}\t{Technique}\t{Head.Name}\t{Arms.Name}\t{Body.Name}\t{Legs.Name}";
-            }
-            else
-            {
-                retval = this.ToString();
-            }
-
-            return retval;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}: {Strength}, {Speed}, {Shooting}, {Passing}, {Technique}\t\t" +
-                   $"Head: {Head.Name}, Arms: {Arms.Name}, Body: {Body.Name}, Legs: {Legs.Name}";
         }
     }
 
@@ -90,11 +76,6 @@ namespace Gear_Optimizer
         public Gear(string name, int[] stats) : base(stats)
         {
             Name = name;
-        }
-
-        public override string ToString()
-        {
-            return $"{Name}: {Strength}, {Speed}, {Shooting}, {Passing}, {Technique}";
         }
     }
 }
